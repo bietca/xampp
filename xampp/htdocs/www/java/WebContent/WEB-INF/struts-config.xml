@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts 
+Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<form-beans>
+		  <!-- Admin -->
+			<form-bean name="loginAdminForm" type="form.admin.LoginAdminForm"></form-bean>
+			<form-bean name="chartForm" type="form.admin.ChartExampleForm"></form-bean>
+			<form-bean name="danhSachUngVienForm" type="form.admin.DanhSachUngVienForm"></form-bean>
+			<form-bean name="danhSachNhaTuyenDungForm" type="form.admin.DanhSachNhaTuyenDungForm"></form-bean>
+			<form-bean name="dangKyAdminForm" type="form.admin.DangKyAdminForm"></form-bean>
+			
+		<!--Goi Trang Chu -->
+			<form-bean name="trangChuForm" type="form.trangchu.TrangChuForm"></form-bean>
+			<form-bean name="trangDangKiTaiKhangForm" type="form.trangchu.TrangDangKiTaiKhangForm"></form-bean>
+			<form-bean name="dangNhapNguoiDungForm" type="form.trangchu.DangNhapNguoiDungForm"></form-bean>
+			
+		<!-- Ứng Viên -->
+			<form-bean name="trangChuUngVienForm" type="form.ungvien.TrangChuUngVienForm"></form-bean>
+			<form-bean name="trangCaNhanUngVienForm" type="form.ungvien.TrangCaNhanUngVienForm"></form-bean>
+			<form-bean name="trangCVDaTaoForm" type="form.ungvien.TrangCVDaTaoForm"></form-bean>
+			<form-bean name="trangCVDaUngTuyenForm" type="form.ungvien.HopThuUngVienForm" ></form-bean>
+			<form-bean name="themHoSoForm" type="form.ungvien.ThemHoSoForm"></form-bean>
+			<form-bean name="trangHopThuForm" type="form.ungvien.TrangHopThuForm"></form-bean>
+			<form-bean name="trangTraLoiThuForm" type="form.ungvien.TrangTraLoiThuForm"></form-bean>
+			<form-bean name="thuUngTuyenForm" type="form.ungvien.ThuUngTuyenForm"></form-bean>
+			<form-bean name="ungVienForm" type="form.ungvien.UngVienForm"></form-bean>
+			
+			
+		<!-- Nha tuyen Dung Form -->
+			<form-bean name="danhSachBaiTuyenDungForm" type="form.tuyendung.DanhSachBaiTuyenDungForm"> </form-bean>
+			<form-bean name="timKiemBaiTuyenDungForm" type="form.tuyendung.TimKiemBaiTuyenDungForm"></form-bean>
+			<form-bean name="themBaiTuyenDungForm" type="form.tuyendung.ThemBaiTuyenDungForm"></form-bean>
+			<form-bean name="quanLyHopThuFrom" type="form.tuyendung.QuanLyHopThuFrom"></form-bean>
+			<form-bean name="nhaTuyenDungForm" type="form.tuyendung.NhaTuyenDungForm"></form-bean>
+			<form-bean name="traLoiThuForm" type="form.admin.TraLoiThuForm"></form-bean>
+  <!-- duey bai -->
+			<form-bean name="danhSachBaiVietForm" type="form.admin.DanhSachBaiVietForm" />
+		<form-bean name="quanliBaiVietForm" type="form.admin.QuanliBaiVietForm" />
+	</form-beans>
+	<action-mappings>
+	             <action input="/dangNhapAdmin.jsp" name="quanliBaiVietForm"
+			path="/suaBaiViet" scope="request"
+			type="action.admin.SuaBaiVietAction">
+			<forward name="suaBaiViet" path="/danh-sachbaiviet.do" redirect="true" />
+		</action> 
+		 <action input="/dangNhapAdmin.jsp" name="danhSachBaiVietForm"
+			path="/danh-sachbaiviet" scope="request" type="action.admin.DanhSachBaiVietAction">
+			<forward name="dsBaiViet" path="/admin/danhSachBaiViet.jsp" />		
+		</action> 
+		<!-- Xem bai duyet -->
+		 <action input="/dangNhapAdmin.jsp" name="danhSachBaiTuyenDungForm"
+			path="/xembaiduyet" scope="request" type="action.admin.XemBaiPheDuyet">
+			<forward name="xembaiduyet" path="/admin/xembai.jsp" />		
+		</action> 
+		
+		<action input="/dangNhapAdmin.jsp" name="quanliBaiVietForm"
+			path="/xoaBaiViet" scope="request"
+			type="action.admin.XoaBaiVietAction">
+			<forward name="xoaBaiViet" path="/danh-sachbaiviet.do" redirect="true" />
+		</action> 
+				<!-- Admin -->
+				<!-- Duyet bai tuyen dung -->
+				
+				<action input="/admin/index.jsp" path="/duyetbai" name="danhSachBaiTuyenDungForm"
+				       type="action.admin.PheDuyetBaiTuyenDungAction" scope="request" >
+					<forward name="dsduyet" path="/admin/duyetbai.jsp"></forward>
+					<forward name="thatTinh" path="/admin/login.jsp"></forward>
+				</action>
+				
+				<action input="/admin/index.jsp" path="/dangXuat" type="action.admin.DangXuatAction" scope="request" >
+					<forward name="thanhCong" path="/admin/login.jsp"></forward>
+				</action>
+				<action   input="/login.jsp"  name="loginAdminForm" 
+			           path="/login-admin" 	scope="request" type="action.admin.LoginAdminAction">
+					<forward name="daCo" path="/danh-SachCadidate.do"></forward>
+				<!--  <forward name="daCo" path="/admin/quanlyadmin.jsp"></forward> -->
+					<forward name="chuaCo" path="/admin/login.jsp"></forward>
+				</action>
+				<action  input="/admin/index.jsp"  name="danhSachUngVienForm" 
+				          path="/danh-SachCadidate"  scope="request"   type="action.admin.DanhSachUngVienAction">
+					<forward name="thanhCong" path="/admin/index.jsp"></forward>
+					<forward name="thatTinh" path="/admin/login.jsp"></forward>
+				</action>
+				<action input="/admin/index.jsp"  name="danhSachUngVienForm"
+				path="/xoa-Cadidate" scope="request" 	type="action.admin.XoaUngVienAction">
+					<forward name="xoaThanhCong" path="/danh-SachCadidate.do"  redirect="true"/>
+				</action>
+				<action  input="/admin/index.jsp" name="danhSachNhaTuyenDungForm" 
+					path="/danh-SachEmployer" scope="request"  type="action.admin.DanhSachNhaTuyenDungAction">
+					<forward name="thanhCong" path="/admin/employer.jsp"></forward>
+					<forward name="thatTinh" path="/admin/login.jsp"></forward>
+				</action>
+				<action input="/admin/employer.jsp"  name="danhSachNhaTuyenDungForm" 
+				        path="/xoa-Employer" scope="request" type="action.admin.XoaNhaTuyenDungAction">
+					<forward name="thanhCong" path="/danh-SachEmployer.do"  redirect="true"/>
+				</action>
+				<action input="/admin/index.jsp" name="dangKyAdminForm"
+					     path="/register-Ok"  scope="request" type="action.admin.DangKyAdminAction">
+					<forward name="thanhCong" path="/danh-SachCadidate.do"></forward>
+					<forward name="thatBai" path="/admin/registerAdmin.jsp"></forward>
+					<forward name="thatTinh" path="/admin/login.jsp"></forward>
+				</action>
+				<action path="/thongKe" name="chartForm" scope="request"
+					input="/admin/index.jsp" type="action.admin.ChartExampleAction">
+					<forward name="thanhCong" path="/admin/thongKe.jsp"></forward>
+					<forward name="thatTinh" path="/admin/login.jsp"></forward>
+				</action>
+				
+				
+				
+			<!-- Admin -->	
+				
+				
+				
+				
+				
+		<!-- Chi Tiet Bai tuyen dung trang chu-->
+				<action  input="/trangchu.jsp" name="danhSachBaiTuyenDungForm" 
+					path="/ct-baituyendung" scope="request" type="action.trangchu.ChiTietBaiTuyenDungAction">
+					<forward name="ctbaituyendung" path="/chitietbaituyedung.jsp"></forward>
+					<forward name="xemtdung" path="/ungvien/xemttttuyendung.jsp"></forward>
+				</action>
+						
+				
+		<!-- Nha  Tuyen Dung -->
+		
+		
+				<!-- Xem thu da nhan -->
+				<action  input="/trangchu.jsp" name="trangCVDaUngTuyenForm" 
+					path="/xemthunhan-tuyendung" scope="request" type="action.tuyendung.XemThuNhanAction">
+					<forward name="xemthunhan" path="/tuyendung/xemthunhan.jsp"></forward>
+				</action>
+				<!-- Xem thu da gui  -->
+				<action  input="/trangchu.jsp" name="trangCVDaUngTuyenForm" 
+					path="/xemthugui-tuyendung" scope="request" type="action.tuyendung.XemThuGuiAction">
+					<forward name="xemthugui" path="/tuyendung/xemthugui.jsp"></forward>
+				</action>
+		
+		
+		
+			<!-- Tra loi thu ung vien  -->
+				<action  input="/trangchu.jsp" name="traLoiThuForm" 
+					path="/traloithu-ungtuyen" scope="request" type="action.tuyendung.TraLoiThuUngVienAction">
+					<forward name="traloithu" path="/tuyendung/traloithuungvien.jsp"></forward>
+					<forward name="traloithanhcong" path="/qlhopthu-tuyendung.do"></forward>
+				</action>
+		
+			<!-- Chi Tiet Bi tuyen dung  trang ca nha-->
+				<action  input="/trangchu.jsp" name="danhSachBaiTuyenDungForm" 
+					path="/ql-xemchitiet" scope="request" type="action.tuyendung.QLXemChiTietAction">
+					<forward name="qlxemchitiet" path="/tuyendung/qlxemchitietbaituyendung.jsp"></forward>
+					<forward name="qlxemchitietcv" path="/tuyendung/themchitietCV.jsp"></forward>
+				</action>
+				
+				<!-- Tim kiem bai tuyen dung -->
+				<action  input="/trangchu.jsp" name="timKiemBaiTuyenDungForm" 
+					path="/tk-baituyendung" scope="request" type="action.tuyendung.TimKiemBaiTuyenDungAction">
+					 <forward name="timkiembaiviet" path="/tuyendung/timkiembaiviet.jsp"></forward> 
+				</action>
+				<!-- Thuc THi Tim Kiem -->
+				<action  input="/tuyendung/timkiembaiviet.jsp" name="timKiemBaiTuyenDungForm" 
+					path="/tk-baituyendung1" scope="request" type="action.tuyendung.ThucThiTimKiemAction">
+				</action>
+				
+				<!-- Quant Trang ca nhan tuyen dung -->
+				<action  input="/trangchu.jsp" name="nhaTuyenDungForm" 
+					path="/qlcn-tuyendung" scope="request" type="action.tuyendung.QuanLyTrangCaNhan">
+					<forward name="trangcanhan" path="/tuyendung/trangchuutuyendung.jsp"></forward>
+				</action>
+				<!-- Quant Trang ca nhan tuyen dung -->
+				<action  input="/trangchu.jsp" name="nhaTuyenDungForm" 
+					path="/sua-nhatuyendung" scope="request" type="action.tuyendung.SuaNhaTuyenDungAction">
+					<forward name="suathongtin" path="/qlcn-tuyendung.do"></forward>
+				</action>
+				
+				<!-- Quant ly bai tuyen dung -->
+				<action  input="/trangchu.jsp" name="danhSachBaiTuyenDungForm" 
+					path="/qlbtuyendung-tuyendung" scope="request" type="action.tuyendung.QuanLyBaiTuyenDungAcion">
+					<forward name="qlnhatuyendung" path="/tuyendung/qlbaituyendung.jsp"></forward>
+					<forward name="xoaThanhCong" path="/qlbtuyendung-tuyendung.do"></forward>
+				</action>
+				<!--  -->
+				<action  input="/trangchu.jsp" name="danhSachBaiTuyenDungForm" 
+					path="/xoabai-tuyendung" scope="request" type="action.tuyendung.XoaBaiTuyenDung">
+					<forward name="xoathanhcong" path="/qlbtuyendung-tuyendung.do"></forward>
+				</action>
+				<!-- Quant ly Hop THu tuyen dung -->
+				<action  input="/trangchu.jsp" name="quanLyHopThuFrom" 
+					path="/qlhopthu-tuyendung" scope="request" type="action.tuyendung.QuanLyHopThuAction">
+					<forward name="quanlythuungtuyen" path="/tuyendung/qlyhopthu.jsp"></forward>
+				</action>
+			<!-- Them Bai tuyen dung -->
+				<action  input="/trangchu.jsp" name="themBaiTuyenDungForm" 
+					path="/them-tuyendung" scope="request" type="action.tuyendung.ThemBaiTuyenDungAction">
+					<forward name="themthanhcong" path="/qlbtuyendung-tuyendung.do"></forward>
+					<forward name="thembaituyendung" path="/tuyendung/thembaituyendung.jsp"></forward>
+					<forward name="themthatbai" path="/tuyendung/thembaituyendung.jsp"></forward>					
+				</action>
+				
+				
+					<!--Sua Bai Tuyen Dung -->
+				<action  input="/trangchu.jsp" name="themBaiTuyenDungForm" 
+					path="/suabai-tuyendung" scope="request" type="action.tuyendung.SuaBaiTuyenDungAction">
+					<forward name="suabaituyendung" path="/tuyendung/suabaituyendung.jsp"></forward>			
+				</action>
+				
+				<!-- Loc thu nha tuyen dung  -->
+				<action  input="/trangchu.jsp" name="quanLyHopThuFrom" 
+					path="/qlhopthu-tuyendung1" scope="request" type="action.tuyendung.QuanLyHopThuAction1">				
+				</action>
+				
+				
+			
+		<!-- /Het Bai Tuyen Dung  -->
+
+		<!-- Bat Đầu Giao Diện -->
+		<!-- Giao Giao Dien trang Chu -->
+				<action  input="/trangchu.jsp" name="trangChuForm" 
+					path="/gd-trangchu" scope="request" type="action.trangchu.TrangChuAction">
+					<forward name="gdtrangchu" path="/trangchu.jsp"></forward>
+				</action>
+				<!-- Dang xuat -->
+				<action  input="/trangchu.jsp" name="trangChuForm" 
+					path="/dxuat-trangchu" scope="request" type="action.trangchu.TrangDangXuatAction">
+					<forward name="dangxuat" path="/gd-trangchu.do"></forward>
+				</action>
+				
+				<!-- Dang kí tai khoan  -->
+					<action  input="/trangchu.jsp" name="trangDangKiTaiKhangForm" 
+					path="/dktk-trangchu" scope="request" type="action.trangchu.TrangDangKiTaiKhoanAction">
+					<forward name="dangkitaikhoan" path="/dangkitaikhoan.jsp"></forward>
+					<forward name="thanhCong" path="/dangnhaptaikhoan.jsp"></forward>
+					<forward name="thatbai" path="/dangkitaikhoan.jsp"></forward>
+				</action>			
+					
+				<!--Đăng Nhập nguoidung -->
+				<action  input="/trangchu.jsp" name="dangNhapNguoiDungForm" 
+					path="/dn-nguoidung" scope="request" type="action.trangchu.DangNhapNguoiDungAction">
+					<forward name="dnnguoidung" path="/dangnhaptaikhoan.jsp"></forward>
+					<forward name="thanhcongUV" path="/cn-ungvien.do"></forward>
+					<forward name="thanhcongNTD" path="/qlcn-tuyendung.do"></forward>
+					<forward name="thaibai" path="/dangnhaptaikhoan.jsp"></forward>
+				</action>	
+		<!-- /Het Giao Dien -->	
+					
+		<!--DANG KI TIM VIEC -->	
+		
+		<action  input="/trangchu.jsp" name="trangChuForm" 
+					path="/dangkitimkiec" scope="request" type="action.ungvien.DangKiTimViecAction">
+					<forward name="dkchuadangnhap" path="/dn-nguoidung.do"></forward>
+					<forward name="loidangki" path="/dktk-trangchu.do"></forward>
+					<forward name="dkdadangnhap" path="/tc-ungvien.do"></forward>
+					
+				</action>
+		
+		<!-- Thu Ung Tuyen Nhanh-->
+				<action  input="/trangchu.jsp" name="thuUngTuyenForm" 
+					path="/ungtuyennhanh" scope="request" type="action.ungvien.ThuUngTuyenNhanhAction">
+					<forward name="thatbai" path="/dn-nguoidung.do"></forward>
+					<forward name="thanhcong" path="/ungvien/ungtuyennhan.jsp"></forward>
+					<forward name="themthanhcong"  path="/cvut-ungvien.do"></forward>
+				</action>	
+		
+		
+		<!-- Chuyển sang trang chu ung vien -->
+				<action  input="/trangchu.jsp" name="timKiemBaiTuyenDungForm" 
+					path="/tc-ungvien" scope="request" type="action.ungvien.TrangChuUngVienAction">
+					<!-- <forward name="login" path="/dn-nguoidung.do"></forward> -->
+					<forward name="trangchuungvien" path="/ungvien/trangchuungvien.jsp"></forward>
+					
+				</action>	
+		<!-- Chuyển sang ca nha ung vien -->
+				<action  input="/trangchu.jsp" name="trangCaNhanUngVienForm" 
+					path="/cn-ungvien" scope="request" type="action.ungvien.TrangCaNhanUngVienAction">
+					<forward name="trangcanhan" path="/ungvien/trangcanhanungvien.jsp"></forward>
+					 <forward name="login" path="/dn-nguoidung.do"></forward>
+				</action>	
+				
+				
+				
+				
+			<!-- Chuyển Trang cv da tao -->
+				<action  input="/trangchu.jsp" name="trangCVDaTaoForm" 
+					path="/cvdt-ungvien" scope="request" type="action.ungvien.TrangCVDaTaoAction">
+					<forward name="trangcvdatao" path="/ungvien/trangcvdatao.jsp"></forward>
+				</action>	
+				
+				<!--Xoa CV da tao-->
+				<action  input="/trangchu.jsp" name="trangCVDaTaoForm" 
+					path="/xoahoSo-ungvien" scope="request" type="action.ungvien.XoaHoSoAction">
+					<forward name="xoacv" path="/cvdt-ungvien.do"></forward>
+				</action>	
+				
+				
+				
+			<!-- Chuyển Trang cv da ung tuyen -->
+				<action  input="/trangchu.jsp" name="trangCVDaUngTuyenForm" 
+					path="/cvut-ungvien" scope="request" type="action.ungvien.TrangHopThuAction">
+					<forward name="thungtuyen" path="/ungvien/tranghopthu.jsp"></forward>
+					<forward name="xemchiietbatuyendung" path="/ungvien/xemchiietbaituyendung.jsp"></forward>
+				</action>
+				
+			<!-- Chuyển Trang tao moi CV --> 
+				<action  input="/trangchu.jsp" name="themHoSoForm" 
+					path="/taocv-ungvien" scope="request" type="action.ungvien.ThemHoSoAction">
+					<forward name="taocv" path="/ungvien/themhoso.jsp"></forward>
+					<forward name="thanhCongRoi" path="/cvdt-ungvien.do"></forward>
+				</action>	
+				
+				<!-- Sua Ho So--> 
+				<action  input="/trangchu.jsp" name="themHoSoForm" 
+					path="/suahoso-ungvien" scope="request" type="action.ungvien.SuaHoSoAction">
+					<forward name="suaHoSo" path="/ungvien/suahoso.jsp"></forward>
+					<forward name="thanhCongRoi" path="/cvdt-ungvien.do"></forward>
+				</action>	
+				
+				
+		
+			<!-- Trang Xem  chi tie CV  -->
+				<action  input="/trangchu.jsp" name="trangCVDaTaoForm"
+					path="/xemcv-ungvien" scope="request" type="action.ungvien.TrangXemCVAction">
+					<forward name="xemcv" path="/ungvien/xemchitiethoso.jsp"></forward>
+				</action>	
+				
+			<!-- Trang Xemc chi tiet Thu thu da nhan -->
+				<action  input="/trangchu.jsp" name="trangCVDaUngTuyenForm" 
+					path="/xemthunhan-ungvien" scope="request" type="action.ungvien.TrangXemThuAction">
+					<forward name="xemthu" path="/ungvien/trangxemthu.jsp"></forward>
+				</action>	
+				
+				
+				<!-- Tra loi thu nha tuyen dung  -->
+				<action  input="/trangchu.jsp" name="traLoiThuForm" 
+					path="/traloithu-nhatuyendung" scope="request" type="action.ungvien.TraLoiThuNhaTuyenDungAction">
+					<forward name="traloithuNTD" path="/ungvien/tlnhatuyendung.jsp"></forward>
+					<forward name="traloiok" path="/cvut-ungvien.do"></forward>
+				</action>
+				
+				<!-- Xem thu da gui -->
+				<action  input="/trangchu.jsp" name="trangCVDaUngTuyenForm" 
+					path="/xemthugui-ungvien" scope="request" type="action.ungvien.XemThuDaGuiAction">
+					<forward name="xemthugui" path="/ungvien/xemthugui.jsp"></forward>
+				</action>
+				
+				<!-- Sua ung vien Form -->
+					<action  input="/trangchu.jsp" name="ungVienForm" 
+					path="/sua-ungvien" scope="request" type="action.ungvien.SuaThongTinAction">
+					<forward name="suaungvien" path="/cn-ungvien.do"></forward>
+				</action>
+				
+				<!-- Loc thu Form -->
+					<action  input="/trangchu.jsp" name="trangCVDaUngTuyenForm" 
+					path="/cvdt-ungvien1" scope="request" type="action.ungvien.LocThuAction">
+				</action>
+
+	</action-mappings>
+	<message-resources parameter="common.ThongBao"></message-resources>
+</struts-config>
